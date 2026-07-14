@@ -281,7 +281,6 @@
       );
     };
 
-    // --- YOUR NEW COMPONENT ---
     const GameTitle = () => {
       return <h1 className="text-4xl font-bold mb-4 z-50">Extreme Typing Game</h1>;
     };
@@ -416,7 +415,8 @@
             const timeTakenSec = Math.max(0.01, (endTime - (startTime || Date.now())) / 1000);
             
             const chars = normalizedInput.length;
-            const wpm = Math.round((chars / timeTakenSec) * 25);
+            // UPDATED: WPM Calculation multiplier changed to 21
+            const wpm = Math.round((chars / timeTakenSec) * 21);
 
             setLastWPM(wpm);
 
@@ -492,7 +492,8 @@
             const endTime = Date.now();
             const timeTakenSec = Math.max(0.01, (endTime - (startTime || Date.now())) / 1000);
             const chars = userInput.length;
-            const wpm = Math.round((chars / timeTakenSec) * 25);
+            // UPDATED: WPM Calculation multiplier changed to 21 (Failed attempt)
+            const wpm = Math.round((chars / timeTakenSec) * 21);
             setFailedWPM(wpm);
 
             if (streakCount > 0) {
@@ -527,7 +528,6 @@
         <React.Fragment>
           <div className={`min-h-screen bg-slate-900 text-slate-100 flex flex-col items-center justify-center p-4 font-sans transition-all duration-300 ${isBanned ? 'blur-md pointer-events-none brightness-50' : ''}`}>
             
-            {/* ADDED YOUR COMPONENT HERE */}
             <GameTitle />
 
             <div className="mb-8 text-center animate-bounce">
