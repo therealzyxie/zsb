@@ -64,7 +64,14 @@
       { display: "phalaenopsisappendiculata", accepted: ["phalaenopsisappendiculata"] },
       { display: "cercialdermatitissymphilia", accepted: ["cercialdermatitissymphilia"] },
       { display: "epidermodysplasiaverruciformis", accepted: ["epidermodysplasiaverruciformis"] },
-      { display: "passifloraceaeconvolvulaceous", accepted: ["passifloraceaeconvolvulaceous"] }
+      { display: "passifloraceaeconvolvulaceous", accepted: ["passifloraceaeconvolvulaceous"] },
+      // NEW EXTREME WORDS
+      { display: "micropachycephalosaurus", accepted: ["micropachycephalosaurus"] },
+      { display: "encephalocraniocutaneouslipomatosis", accepted: ["encephalocraniocutaneouslipomatosis"] },
+      { display: "laryngoonychocutaneoussyndrome", accepted: ["laryngoonychocutaneoussyndrome"] },
+      { display: "gastroesophageallacerationsyndrome", accepted: ["gastroesophageallacerationsyndrome"] },
+      { display: "laryngopharyngoesophagectomy", accepted: ["laryngopharyngoesophagectomy"] },
+      { display: "gastrocnemiosemimembranous", accepted: ["gastrocnemiosemimembranous"] }
     ];
 
     const HARD_WORDS = [
@@ -105,7 +112,13 @@
       { display: "acetylcholinesterase", accepted: ["acetylcholinesterase"] },
       { display: "pseudocholinesterase", accepted: ["pseudocholinesterase"] },
       { display: "hydrometeorological", accepted: ["hydrometeorological"] },
-      { display: "thremoregulatory", accepted: ["thremoregulatory", "thermoregulatory"] }
+      { display: "thremoregulatory", accepted: ["thremoregulatory", "thermoregulatory"] },
+      // NEW HARD WORDS
+      { display: "oxyphenbutazone", accepted: ["oxyphenbutazone"] },
+      { display: "astrakhan/astrachan/astrakan", accepted: ["astrakhan", "astrachan", "astrakan"] },
+      { display: "wythowte", accepted: ["wythowte"] },
+      { display: "accommodation", accepted: ["accommodation"] },
+      { display: "hyrax", accepted: ["hyrax"] }
     ];
 
     const MODERATE_WORDS = [
@@ -145,7 +158,14 @@
       { display: "sandcastle", accepted: ["sandcastle"] },
       { display: "vacation", accepted: ["vacation"] },
       { display: "solstice", accepted: ["solstice"] },
-      { display: "overheating", accepted: ["overheating"] }
+      { display: "overheating", accepted: ["overheating"] },
+      // NEW MODERATE WORDS
+      { display: "separation", accepted: ["separation"] },
+      { display: "department", accepted: ["department"] },
+      { display: "genome", accepted: ["genome"] },
+      { display: "confidential", accepted: ["confidential"] },
+      { display: "isolation", accepted: ["isolation"] },
+      { display: "llama", accepted: ["llama"] }
     ];
 
     const BEGINNER_WORDS = [
@@ -192,7 +212,20 @@
       { display: "boat", accepted: ["boat"] },
       { display: "fish", accepted: ["fish"] },
       { display: "pond", accepted: ["pond"] },
-      { display: "pool", accepted: ["pool"] }
+      { display: "pool", accepted: ["pool"] },
+      // NEW BEGINNER WORDS
+      { display: "air", accepted: ["air"] },
+      { display: "aim", accepted: ["aim"] },
+      { display: "bus", accepted: ["bus"] },
+      { display: "bar", accepted: ["bar"] },
+      { display: "chew", accepted: ["chew"] },
+      { display: "bottle", accepted: ["bottle"] },
+      { display: "collar", accepted: ["collar"] },
+      { display: "head", accepted: ["head"] },
+      { display: "phone", accepted: ["phone"] },
+      { display: "ear", accepted: ["ear"] },
+      { display: "tab", accepted: ["tab"] },
+      { display: "tap", accepted: ["tap"] }
     ];
 
     const getWordsForMode = (mode) => {
@@ -281,11 +314,7 @@
       );
     };
 
-    const GameTitle = () => {
-      return <h1 className="text-4xl font-bold mb-4 z-50">Extreme Typing Game</h1>;
-    };
-
-    function App() {
+    function GameCore() {
       const [playStyle, setPlayStyle] = useState('normal'); 
       const [gameState, setGameState] = useState('start'); 
       const [gameMode, setGameMode] = useState('extreme'); 
@@ -415,8 +444,8 @@
             const timeTakenSec = Math.max(0.01, (endTime - (startTime || Date.now())) / 1000);
             
             const chars = normalizedInput.length;
-            // UPDATED: WPM Calculation multiplier changed to 21
-            const wpm = Math.round((chars / timeTakenSec) * 21);
+            // WPM MULTIPLIER CHANGED TO 22 HERE
+            const wpm = Math.round((chars / timeTakenSec) * 22);
 
             setLastWPM(wpm);
 
@@ -492,8 +521,8 @@
             const endTime = Date.now();
             const timeTakenSec = Math.max(0.01, (endTime - (startTime || Date.now())) / 1000);
             const chars = userInput.length;
-            // UPDATED: WPM Calculation multiplier changed to 21 (Failed attempt)
-            const wpm = Math.round((chars / timeTakenSec) * 21);
+            // WPM MULTIPLIER CHANGED TO 22 HERE
+            const wpm = Math.round((chars / timeTakenSec) * 22);
             setFailedWPM(wpm);
 
             if (streakCount > 0) {
@@ -526,10 +555,8 @@
 
       return (
         <React.Fragment>
-          <div className={`min-h-screen bg-slate-900 text-slate-100 flex flex-col items-center justify-center p-4 font-sans transition-all duration-300 ${isBanned ? 'blur-md pointer-events-none brightness-50' : ''}`}>
+          <div className={`w-full flex flex-col items-center justify-center p-4 font-sans transition-all duration-300 ${isBanned ? 'blur-md pointer-events-none brightness-50' : ''}`}>
             
-            <GameTitle />
-
             <div className="mb-8 text-center animate-bounce">
               <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-yellow-400 to-sky-400 drop-shadow-[0_0_10px_rgba(251,146,60,0.5)]">
                 ☀️ SUMMER UPDATE 🌊
@@ -604,7 +631,8 @@
 
                       <div className="flex flex-col sm:flex-row gap-6 justify-center mt-4 flex-wrap">
                         <div className="flex flex-col items-center gap-2">
-                          <span className="text-amber-400 text-xs font-bold bg-amber-900/50 px-2 py-0.5 rounded-full border border-amber-500/30 shadow-[0_0_8px_rgba(245,158,11,0.3)]">+11 New Words!</span>
+                          {/* UPDATED BADGE TEXT HERE */}
+                          <span className="text-amber-400 text-xs font-bold bg-amber-900/50 px-2 py-0.5 rounded-full border border-amber-500/30 shadow-[0_0_8px_rgba(245,158,11,0.3)]">+12 New Words!</span>
                           <button 
                             onClick={() => startGame('beginner')}
                             className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-amber-500/30 transition-all flex items-center justify-center gap-2 w-full sm:w-auto"
@@ -614,7 +642,8 @@
                         </div>
 
                         <div className="flex flex-col items-center gap-2">
-                          <span className="text-sky-400 text-xs font-bold bg-sky-900/50 px-2 py-0.5 rounded-full border border-sky-500/30 shadow-[0_0_8px_rgba(56,189,248,0.3)]">+8 New Words!</span>
+                          {/* UPDATED BADGE TEXT HERE */}
+                          <span className="text-sky-400 text-xs font-bold bg-sky-900/50 px-2 py-0.5 rounded-full border border-sky-500/30 shadow-[0_0_8px_rgba(56,189,248,0.3)]">+6 New Words!</span>
                           <button 
                             onClick={() => startGame('moderate')}
                             className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-sky-500/30 transition-all flex items-center justify-center gap-2 w-full sm:w-auto"
@@ -624,7 +653,8 @@
                         </div>
 
                         <div className="flex flex-col items-center gap-2">
-                          <span className="text-emerald-400 text-xs font-bold bg-emerald-900/50 px-2 py-0.5 rounded-full border border-emerald-500/30 shadow-[0_0_8px_rgba(52,211,153,0.3)]">+6 New Words!</span>
+                          {/* UPDATED BADGE TEXT HERE */}
+                          <span className="text-emerald-400 text-xs font-bold bg-emerald-900/50 px-2 py-0.5 rounded-full border border-emerald-500/30 shadow-[0_0_8px_rgba(52,211,153,0.3)]">+5 New Words!</span>
                           <button 
                             onClick={() => startGame('hard')}
                             className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-emerald-500/30 transition-all flex items-center justify-center gap-2 w-full sm:w-auto"
@@ -634,7 +664,8 @@
                         </div>
 
                         <div className="flex flex-col items-center gap-2">
-                          <span className="text-indigo-400 text-xs font-bold bg-indigo-900/50 px-2 py-0.5 rounded-full border border-indigo-500/30 shadow-[0_0_8px_rgba(129,140,248,0.3)]">+4 New Words!</span>
+                          {/* UPDATED BADGE TEXT HERE */}
+                          <span className="text-indigo-400 text-xs font-bold bg-indigo-900/50 px-2 py-0.5 rounded-full border border-indigo-500/30 shadow-[0_0_8px_rgba(129,140,248,0.3)]">+6 New Words!</span>
                           <button 
                             onClick={() => startGame('extreme')}
                             className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-indigo-500/30 transition-all flex items-center justify-center gap-2 w-full sm:w-auto"
@@ -644,6 +675,7 @@
                         </div>
 
                         <div className="flex flex-col items-center gap-2">
+                          {/* UPDATED BADGE TEXT HERE */}
                           <span className="text-fuchsia-400 text-xs font-bold bg-fuchsia-900/50 px-2 py-0.5 rounded-full border border-fuchsia-500/30 shadow-[0_0_8px_rgba(232,121,249,0.3)]">+29 New Words!</span>
                           <button 
                             onClick={() => startGame('random')}
@@ -852,6 +884,15 @@
         </React.Fragment>
       );
     }
+
+    const App = () => {
+      return (
+        <div className="flex flex-col items-center justify-center min-h-screen p-4">
+          <h1 className="text-4xl font-bold mb-4 z-50 text-white">Extreme Typing Game</h1>
+          <GameCore />
+        </div>
+      );
+    };
 
     // Render the App
     const root = ReactDOM.createRoot(document.getElementById('root'));
