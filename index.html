@@ -65,13 +65,18 @@
       { display: "cercialdermatitissymphilia", accepted: ["cercialdermatitissymphilia"] },
       { display: "epidermodysplasiaverruciformis", accepted: ["epidermodysplasiaverruciformis"] },
       { display: "passifloraceaeconvolvulaceous", accepted: ["passifloraceaeconvolvulaceous"] },
-      // NEW EXTREME WORDS
       { display: "micropachycephalosaurus", accepted: ["micropachycephalosaurus"] },
       { display: "encephalocraniocutaneouslipomatosis", accepted: ["encephalocraniocutaneouslipomatosis"] },
       { display: "laryngoonychocutaneoussyndrome", accepted: ["laryngoonychocutaneoussyndrome"] },
       { display: "gastroesophageallacerationsyndrome", accepted: ["gastroesophageallacerationsyndrome"] },
       { display: "laryngopharyngoesophagectomy", accepted: ["laryngopharyngoesophagectomy"] },
-      { display: "gastrocnemiosemimembranous", accepted: ["gastrocnemiosemimembranous"] }
+      { display: "gastrocnemiosemimembranous", accepted: ["gastrocnemiosemimembranous"] },
+      // NEW EXTREME WORDS
+      { display: "polybetahydroxyputyrate", accepted: ["polybetahydroxyputyrate"] },
+      { display: "tonalitetrondhjemitegranodiorite", accepted: ["tonalitetrondhjemitegranodiorite"] },
+      { display: "laparoscopiccolostomization", accepted: ["laparoscopiccolostomization"] },
+      { display: "hyperlipobilirubinemia", accepted: ["hyperlipobilirubinemia"] },
+      { display: "talimogenelaherparepvec", accepted: ["talimogenelaherparepvec"] }
     ];
 
     const HARD_WORDS = [
@@ -113,12 +118,23 @@
       { display: "pseudocholinesterase", accepted: ["pseudocholinesterase"] },
       { display: "hydrometeorological", accepted: ["hydrometeorological"] },
       { display: "thremoregulatory", accepted: ["thremoregulatory", "thermoregulatory"] },
-      // NEW HARD WORDS
       { display: "oxyphenbutazone", accepted: ["oxyphenbutazone"] },
       { display: "astrakhan/astrachan/astrakan", accepted: ["astrakhan", "astrachan", "astrakan"] },
       { display: "wythowte", accepted: ["wythowte"] },
       { display: "accommodation", accepted: ["accommodation"] },
-      { display: "hyrax", accepted: ["hyrax"] }
+      { display: "hyrax", accepted: ["hyrax"] },
+      // NEW HARD WORDS
+      { display: "rhododendron", accepted: ["rhododendron"] },
+      { display: "pseudoephedrine", accepted: ["pseudoephedrine"] },
+      { display: "postmortem", accepted: ["postmortem"] },
+      { display: "cardiotocography", accepted: ["cardiotocography"] },
+      { display: "electrocoagulation", accepted: ["electrocoagulation"] },
+      { display: "adenosinetriphosphate", accepted: ["adenosinetriphosphate"] },
+      { display: "reinstitutionalisation/ization", accepted: ["reinstitutionalisation", "reinstitutionalization"] },
+      { display: "denominationalism", accepted: ["denominationalism"] },
+      { display: "adrenocorticotropin/trophin", accepted: ["adrenocorticotropin", "adrenocorticotrophin"] },
+      { display: "noradrenaline", accepted: ["noradrenaline"] },
+      { display: "schistochila", accepted: ["schistochila"] }
     ];
 
     const MODERATE_WORDS = [
@@ -159,13 +175,25 @@
       { display: "vacation", accepted: ["vacation"] },
       { display: "solstice", accepted: ["solstice"] },
       { display: "overheating", accepted: ["overheating"] },
-      // NEW MODERATE WORDS
       { display: "separation", accepted: ["separation"] },
       { display: "department", accepted: ["department"] },
       { display: "genome", accepted: ["genome"] },
       { display: "confidential", accepted: ["confidential"] },
       { display: "isolation", accepted: ["isolation"] },
-      { display: "llama", accepted: ["llama"] }
+      { display: "llama", accepted: ["llama"] },
+      // NEW MODERATE WORDS
+      { display: "campaign", accepted: ["campaign"] },
+      { display: "operational", accepted: ["operational"] },
+      { display: "unseriousness", accepted: ["unseriousness"] },
+      { display: "cricket", accepted: ["cricket"] },
+      { display: "society", accepted: ["society"] },
+      { display: "withdraw", accepted: ["withdraw"] },
+      { display: "anemia", accepted: ["anemia"] },
+      { display: "analysis", accepted: ["analysis"] },
+      { display: "polyp", accepted: ["polyp"] },
+      { display: "spikiness", accepted: ["spikiness"] },
+      { display: "identification", accepted: ["identification"] },
+      { display: "electricity", accepted: ["electricity"] }
     ];
 
     const BEGINNER_WORDS = [
@@ -213,7 +241,6 @@
       { display: "fish", accepted: ["fish"] },
       { display: "pond", accepted: ["pond"] },
       { display: "pool", accepted: ["pool"] },
-      // NEW BEGINNER WORDS
       { display: "air", accepted: ["air"] },
       { display: "aim", accepted: ["aim"] },
       { display: "bus", accepted: ["bus"] },
@@ -225,7 +252,17 @@
       { display: "phone", accepted: ["phone"] },
       { display: "ear", accepted: ["ear"] },
       { display: "tab", accepted: ["tab"] },
-      { display: "tap", accepted: ["tap"] }
+      { display: "tap", accepted: ["tap"] },
+      // NEW BEGINNER WORDS
+      { display: "jar", accepted: ["jar"] },
+      { display: "aim", accepted: ["aim"] }, // Keeping due to prompt request
+      { display: "love", accepted: ["love"] },
+      { display: "gone", accepted: ["gone"] },
+      { display: "power", accepted: ["power"] },
+      { display: "nest", accepted: ["nest"] },
+      { display: "best", accepted: ["best"] },
+      { display: "low", accepted: ["low"] },
+      { display: "tower", accepted: ["tower"] }
     ];
 
     const getWordsForMode = (mode) => {
@@ -444,7 +481,7 @@
             const timeTakenSec = Math.max(0.01, (endTime - (startTime || Date.now())) / 1000);
             
             const chars = normalizedInput.length;
-            // WPM MULTIPLIER CHANGED TO 22 HERE
+            // WPM MULTIPLIER MAINTAINED AT 22
             const wpm = Math.round((chars / timeTakenSec) * 22);
 
             setLastWPM(wpm);
@@ -521,7 +558,7 @@
             const endTime = Date.now();
             const timeTakenSec = Math.max(0.01, (endTime - (startTime || Date.now())) / 1000);
             const chars = userInput.length;
-            // WPM MULTIPLIER CHANGED TO 22 HERE
+            // WPM MULTIPLIER MAINTAINED AT 22
             const wpm = Math.round((chars / timeTakenSec) * 22);
             setFailedWPM(wpm);
 
@@ -631,8 +668,7 @@
 
                       <div className="flex flex-col sm:flex-row gap-6 justify-center mt-4 flex-wrap">
                         <div className="flex flex-col items-center gap-2">
-                          {/* UPDATED BADGE TEXT HERE */}
-                          <span className="text-amber-400 text-xs font-bold bg-amber-900/50 px-2 py-0.5 rounded-full border border-amber-500/30 shadow-[0_0_8px_rgba(245,158,11,0.3)]">+12 New Words!</span>
+                          <span className="text-amber-400 text-xs font-bold bg-amber-900/50 px-2 py-0.5 rounded-full border border-amber-500/30 shadow-[0_0_8px_rgba(245,158,11,0.3)]">+9 New Words!</span>
                           <button 
                             onClick={() => startGame('beginner')}
                             className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-amber-500/30 transition-all flex items-center justify-center gap-2 w-full sm:w-auto"
@@ -642,8 +678,7 @@
                         </div>
 
                         <div className="flex flex-col items-center gap-2">
-                          {/* UPDATED BADGE TEXT HERE */}
-                          <span className="text-sky-400 text-xs font-bold bg-sky-900/50 px-2 py-0.5 rounded-full border border-sky-500/30 shadow-[0_0_8px_rgba(56,189,248,0.3)]">+6 New Words!</span>
+                          <span className="text-sky-400 text-xs font-bold bg-sky-900/50 px-2 py-0.5 rounded-full border border-sky-500/30 shadow-[0_0_8px_rgba(56,189,248,0.3)]">+12 New Words!</span>
                           <button 
                             onClick={() => startGame('moderate')}
                             className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-sky-500/30 transition-all flex items-center justify-center gap-2 w-full sm:w-auto"
@@ -653,8 +688,7 @@
                         </div>
 
                         <div className="flex flex-col items-center gap-2">
-                          {/* UPDATED BADGE TEXT HERE */}
-                          <span className="text-emerald-400 text-xs font-bold bg-emerald-900/50 px-2 py-0.5 rounded-full border border-emerald-500/30 shadow-[0_0_8px_rgba(52,211,153,0.3)]">+5 New Words!</span>
+                          <span className="text-emerald-400 text-xs font-bold bg-emerald-900/50 px-2 py-0.5 rounded-full border border-emerald-500/30 shadow-[0_0_8px_rgba(52,211,153,0.3)]">+11 New Words!</span>
                           <button 
                             onClick={() => startGame('hard')}
                             className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-emerald-500/30 transition-all flex items-center justify-center gap-2 w-full sm:w-auto"
@@ -664,8 +698,7 @@
                         </div>
 
                         <div className="flex flex-col items-center gap-2">
-                          {/* UPDATED BADGE TEXT HERE */}
-                          <span className="text-indigo-400 text-xs font-bold bg-indigo-900/50 px-2 py-0.5 rounded-full border border-indigo-500/30 shadow-[0_0_8px_rgba(129,140,248,0.3)]">+6 New Words!</span>
+                          <span className="text-indigo-400 text-xs font-bold bg-indigo-900/50 px-2 py-0.5 rounded-full border border-indigo-500/30 shadow-[0_0_8px_rgba(129,140,248,0.3)]">+5 New Words!</span>
                           <button 
                             onClick={() => startGame('extreme')}
                             className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-indigo-500/30 transition-all flex items-center justify-center gap-2 w-full sm:w-auto"
@@ -675,8 +708,7 @@
                         </div>
 
                         <div className="flex flex-col items-center gap-2">
-                          {/* UPDATED BADGE TEXT HERE */}
-                          <span className="text-fuchsia-400 text-xs font-bold bg-fuchsia-900/50 px-2 py-0.5 rounded-full border border-fuchsia-500/30 shadow-[0_0_8px_rgba(232,121,249,0.3)]">+29 New Words!</span>
+                          <span className="text-fuchsia-400 text-xs font-bold bg-fuchsia-900/50 px-2 py-0.5 rounded-full border border-fuchsia-500/30 shadow-[0_0_8px_rgba(232,121,249,0.3)]">+37 New Words!</span>
                           <button 
                             onClick={() => startGame('random')}
                             className="bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-fuchsia-500/30 transition-all flex items-center justify-center gap-2 w-full sm:w-auto"
